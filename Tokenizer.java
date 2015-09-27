@@ -1,54 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Tokenizer {
-	
-	/**
-     * Returns the current token.
-     */
-	private static int getToken() {	
-		return 0;
-    }
-	
-	/**
-     * Skips the current token; next token becomes current token.
-     */
-	private static void skipToken() {
-
-    }
-	
-	/**
-     * Returns the value of the current (integer) token.
-     * If the token is not an integer then returns an error.
-     */
-	private static int intVal(String token) {
-		int value = 0;
-		
-		// Check if token is a valid integer
-		boolean num = true;
-		for (int i = 0; i < token.length(); i++){
-			if(!Character.isDigit(token.charAt(i))){
-				num = false;
-			}
-		}
-		if (!num){
-			System.out.println("Error: Invalid integer token");
-			System.exit(0);
-		}
-		else{
-			value = Integer.parseInt(token);
-		}
-		return value;
-    }
-	
-	/**
-     * Returns the name (string) of the current (id) token.
-     * If the token is not an id then returns an error.
-     */
-	private static String idName() {
-		return "";
-    }
 	
 	/**
      * Determines the type of token and returns the type.
@@ -59,7 +14,11 @@ public class Tokenizer {
 		// Get starting character of token
 		char first = token.charAt(0);
 		
-		if (Character.isLowerCase(first)){
+		if (token.equals("EOF")){
+			// Token is end of file
+			type = "EOF";
+		}
+		else if (Character.isLowerCase(first)){
 			// Character is lower case so must be reserved
 			type = "reserved";
 		}
@@ -73,7 +32,7 @@ public class Tokenizer {
 		}
 		else {
 			// Character is a special character
-			type = "special";
+			type = "symbol";
 		}
 		return type;
     }
@@ -82,7 +41,7 @@ public class Tokenizer {
      * Returns the corresponding integer for the reserved token.
      * If the token is not valid then returns an error.
      */
-	private static int reserved(String token) {
+	private static int getReserved(String token) {
 		int value = 0;
 		if (token.equals("program")){
 			value = 1;
@@ -123,51 +82,209 @@ public class Tokenizer {
 		}
 		return value;
     }
+	
+	/**
+     * Returns the corresponding integer for the symbol token.
+     * If the token is not valid then returns an error.
+     */
+	private static int getSymbol(String token) {
+		int value = 0;
+		if (token.equals(";")){
+			value = 12;
+		}
+		else if (token.equals(",")){
+			value = 13;
+		}
+		else if (token.equals("=")){
+			value = 14;
+		}
+		else if (token.equals("!")){
+			value = 15;
+		}
+		else if (token.equals("[")){
+			value = 16;
+		}
+		else if (token.equals("]")){
+			value = 17;
+		}
+		else if (token.equals("&&")){
+			value = 18;
+		}
+		else if (token.equals("||")){
+			value = 19;
+		}
+		else if (token.equals("(")){
+			value = 20;
+		}
+		else if (token.equals(")")){
+			value = 21;
+		}
+		else if (token.equals("+")){
+			value = 22;
+		}
+		else if (token.equals("-")){
+			value = 23;
+		}
+		else if (token.equals("*")){
+			value = 24;
+		}
+		else if (token.equals("!=")){
+			value = 25;
+		}
+		else if (token.equals("==")){
+			value = 26;
+		}
+		else if (token.equals("<")){
+			value = 27;
+		}
+		else if (token.equals(">")){
+			value = 28;
+		}
+		else if (token.equals("<=")){
+			value = 29;
+		}
+		else if (token.equals(">=")){
+			value = 11;
+		}
+		else {
+			System.out.println("Error: Invalid special token");
+			System.exit(0);
+		}
+		return value;
+    }
+	
+	/**
+     * Returns the corresponding integer for the integer token.
+     * If the token is not valid then returns an error.
+     */
+	private static int getInteger(String token) {
+		int value = 31;
+		
+		// Check if token is a valid integer
+		boolean num = true;
+		for (int i = 0; i < token.length(); i++){
+			if(!Character.isDigit(token.charAt(i))){
+				num = false;
+			}
+		}
+		if (!num){
+			System.out.println("Error: Invalid integer token");
+			System.exit(0);
+		}
+		return value;
+	}
+	
+	/**
+     * Returns the corresponding integer for the identifier token.
+     * If the token is not valid then returns an error.
+     */
+	private static int getIdentifier(String token) {
+		int value = 32;
+		
+		// Find out if the token contains an integer
+		// If it does get the index of the first occurrence
+		boolean containsInt = false;
+		int intIndex;
+		for (intIndex = 0; intIndex < token.length(); intIndex++){
+			if(Character.isDigit(token.charAt(intIndex))){
+				containsInt = true;
+				break;
+			}
+		}
+		
+		// Check that all characters before the first integer
+		// are upper case
+		boolean allCaps = true;
+		for (int i = 0; i < intIndex; i++){
+			if(!Character.isUpperCase(token.charAt(i))){
+				allCaps = false;
+			}
+		}
+		
+		// Check that all characters after the first integer
+		// are also integers
+		boolean allInts = true;
+		if (containsInt){
+			for (int i = intIndex; i < token.length(); i++){
+				if(!Character.isDigit(token.charAt(i))){
+					allInts = false;
+				}
+			}
+		}
+		
+		// If the token is not in the proper format then return an error
+		if (!allCaps || !allInts){
+			System.out.println("Error: Invalid identifier token");
+			System.exit(0);
+		}
+		
+		return value;
+	}
 
 	public static void main(String[] args) {
 		// Get file name from command line argument
-		String fileName = args[1];
+		//String fileName = args[1];
 		
-		try {
+		//try {
 			// Open file & read stream
-			FileReader file = new FileReader(fileName);
-			BufferedReader br = new BufferedReader(file);
+			//FileReader file = new FileReader(fileName);
+			//BufferedReader br = new BufferedReader(file);
 			
 			// Read each line and tokenize
-			String line;
-			while((line = br.readLine()) != null){
+			//String line;
+		
+			// Expected: 1 4 32 12 2 32 14 31 12 11 32 12 3 33
+			String line = "program int X ; begin X = 25 ; write X ; end EOF";
+			
+			//while((line = br.readLine()) != null){
 				// Split tokens from line into an array
 				// Currently only splits on whitespace
 				// Still need to implement special cases
-				String[] tokens = line.split("\\");
-				
-				for (int i = 1; i < tokens.length; i++){
-					// Get token type
-					String type = tokenType(tokens[i]);
+				StringTokenizer st = new StringTokenizer(line);
+				while (st.hasMoreTokens()) {
+					// Get token
+					String token = st.nextToken();
 					
+					// Get token type
+					String type = tokenType(token);
+
 					// Validate and output token
+					int output;
 					switch (type) {
 					case "reserved":
+						output = getReserved(token);
+						System.out.println(output);
 						break;
 					case "identifier":
+						output = getIdentifier(token);
+						System.out.println(output);
 						break;
 					case "integer":
+						output = getInteger(token);
+						System.out.println(output);
 						break;
-					case "special":
+					case "symbol":
+						output = getSymbol(token);
+						System.out.println(output);
+						break;
+					case "EOF":
+						output = 33;
+						System.out.println(output);
 						break;
 					default:
 						System.out.println("Invalid token type");
 					}
 				}
-			}
+				
+			//}
 			
 			// Close file & read stream
-			file.close();
-			br.close();
-		}
-		catch (IOException e) {
-			System.out.println("Error opening file: " + e);
-		}
+			//file.close();
+			//br.close();
+		//}
+		//catch (IOException e) {
+		//	System.out.println("Error opening file: " + e);
+		//}
 		
 	}
 
