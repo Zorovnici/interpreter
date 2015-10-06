@@ -1,0 +1,79 @@
+-----------------------------------------
+Design
+-----------------------------------------
+
+Tokenizer reads in an input file line by
+line. Each individual line is split into
+separate tokens by using regex pattern
+matching.
+
+The token is sent to the tokenType method
+which determines what type of token it is
+based on the first character. The returned
+token type determines which getToken
+function the token is sent to. The types
+are: reserved, identifier, integer, and
+symbol.
+
+getReserved. Checks that the token is a
+valid reserved token and returns its 
+corresponding integer. Returns an error
+otherwise.
+
+getSymbol. Checks that the token is a
+valid special symbol and returns its 
+corresponding integer. Returns an error
+otherwise.
+
+getInteger. Checks that the token is a
+valid integer and returns its 
+corresponding integer. Returns an error
+otherwise.
+
+getIdentifier. Checks that the token is a
+valid identifier and returns its 
+corresponding integer. Returns an error
+otherwise.
+
+Each valid returned integer is printed
+to the screen and added to a queue of
+tokens.
+
+Finally, an EOF token is added at the end
+of the file stream.
+
+-----------------------------------------
+Libraries used
+-----------------------------------------
+
+For reading the core program source file:
+BufferedReader, FileReader, IOException
+
+For storing the tokens:
+Queue, LinkedList
+
+For separating the tokens:
+regex.Matcher, regex.Pattern
+
+-----------------------------------------
+User Manual
+-----------------------------------------
+
+To compile the program simply execute the
+following at a command line prompt:
+
+	javac Tokenizer.java
+
+To run execute the following:
+
+	java Tokenizer <CoreProgram>
+
+Where <CoreProgram> is the name of the
+source file that you would like to
+tokenize.
+
+If the tokens are valid then the program
+will print out the tokens corresponding
+integer value on separate lines. If an
+invalid token is encountered an error will
+display and the program will exit.
