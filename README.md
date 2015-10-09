@@ -42,10 +42,22 @@ Integers
 ```
 Identifiers: 
 ```bash
-Start with upper case letter, followed by zero or more upper case letters and ending with
-zero or more digits. Note that something like "ABCend" is illegal as an identifier because of the
-lower case letters; and it is not two tokens because of lack of whitespace.
+Start with upper case letter, followed by zero or more upper case letters
+and ending with zero or more digits. Note that something like "ABCend" 
+is illegal as an identifier because of the lower case letters; 
+and it is not two tokens because of lack of whitespace.
 ```
 
 Tokens are numbered 1 through 11 for the reserved words, 12 through 30 for the special symbols, 31 for integer, and 32 for identifier. EOF token
 (for end-of-file) is token number 33.
+
+## Libraries used
+
+For reading the core program source file:
+BufferedReader, FileReader, IOException
+
+For storing the tokens:
+Queue, LinkedList
+
+For separating the tokens:
+regex.Matcher, regex.Pattern
