@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +14,10 @@ public class Tokenizer {
      * Private members --------------------------------------------------------
      */
     
-    private Queue<Integer> tokens;
+    private Queue<Integer> tokens;   // Stores tokens
+    private Set<String> identifiers; // Stores identifiers
+    private Set<String> declared;    // Keeps track of declarations
+    private boolean isDeclared;      // Indicates if declaration is complete
 
     /**
      * Determines the type of token and returns the type.
@@ -278,6 +282,7 @@ public class Tokenizer {
                         break;
                     default:
                         System.out.println("Invalid token type");
+                        System.exit(0);
                     }
                 }
 
@@ -294,6 +299,28 @@ public class Tokenizer {
         catch (IOException e) {
             System.out.println("Error opening file. " + e);
         }
+    }
+    
+    /**
+     * Returns the current token
+     */
+    public int getToken(){
+        if(tokens.size()==0){
+            System.out.print("Error: there are no tokens");
+            System.exit(0);
+        }
+        return tokens.peek();
+    }
+    
+    /**
+     * Advances to next token
+     */
+    public void nextToken(){
+        if(tokens.size()==0){
+            System.out.print("Error: there are no tokens");
+            System.exit(0);
+        }
+        tokens.remove();
     }
 
 }
