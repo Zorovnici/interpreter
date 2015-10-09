@@ -38,7 +38,7 @@ Special symbols (19 special symbols):
 ```
 Integers 
 ```
-(unsigned)
+unsigned
 ```
 Identifiers: 
 ```
