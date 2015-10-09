@@ -1,4 +1,4 @@
-import nonTerminals.*;
+import nonterminals.*;
 import tokenizer.*;
 
 public class Interpreter {

@@ -1,4 +1,4 @@
-package nonTerminals;
+package nonterminals;
 import tokenizer.*;
 
 public class Program {
