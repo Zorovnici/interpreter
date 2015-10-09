@@ -18,7 +18,7 @@ An interpreter for a toy imperative language.
 <output> ::= write <id list>;
 <cond> ::= <comp> | !<cond> | [<cond> && <cond>] | [<cond> or <cond>]
 <comp> ::= (<op> <comp op> <op>)
-<exp> ::= <fac>|<fac>+<exp>|<fac>-<exp>
+<exp> ::= <fac> | <fac>+<exp> | <fac>-<exp>
 <fac> ::= <op> | <op> * <fac>
 <op> ::= <int> | <id> | (<exp>)
 <comp op> ::= != | == | < | > | <= | >= 
