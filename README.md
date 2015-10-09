@@ -4,7 +4,7 @@ An interpreter for a toy imperative language.
 
 ## The language
 
-```bash
+```
 <prog> ::= program <decl seq> begin <stmt seq> end
 <decl seq> ::= <decl> | <decl> <decl seq>
 <stmt seq> ::= <stmt> | <stmt> <stmt seq>
@@ -29,19 +29,19 @@ An interpreter for a toy imperative language.
 ```
 
 Reserved words (11 reserved words):
-```bash
+```
 program, begin, end, int, if, then, else, while, loop, read, write
 ```
 Special symbols (19 special symbols): 
-```bash 
+```
 ; , = ! [ ] && || ( ) + - * != == < > <= >=
 ```
 Integers 
-```bash
+```
 (unsigned)
 ```
 Identifiers: 
-```bash
+```
 Start with upper case letter, followed by zero or more upper case letters
 and ending with zero or more digits. Note that something like "ABCend" 
 is illegal as an identifier because of the lower case letters; 
