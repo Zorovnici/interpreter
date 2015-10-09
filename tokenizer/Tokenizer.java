@@ -1,3 +1,4 @@
+package tokenizer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tokenizer {
+    
+    /*
+     * Private members --------------------------------------------------------
+     */
+    
+    private Queue<Integer> tokens;
 
     /**
      * Determines the type of token and returns the type.
@@ -219,17 +226,21 @@ public class Tokenizer {
 
         return value;
     }
-
-    public static void main(String[] args) {
-        // Get file name from command line argument
-        String fileName = args[0];
-        
+    
+    /*
+     * Public members --------------------------------------------------------
+     */
+    
+    /**
+     * Constructor
+     */
+    public Tokenizer(String inFile){
         // Queue to store tokens
-        Queue<Integer> tokens = new LinkedList<Integer>();
-
+        tokens = new LinkedList<Integer>();
+        
         try {
             // Open file & read stream
-            FileReader file = new FileReader(fileName);
+            FileReader file = new FileReader(inFile);
             BufferedReader br = new BufferedReader(file);
 
             // Read each line and split into tokens
@@ -283,7 +294,6 @@ public class Tokenizer {
         catch (IOException e) {
             System.out.println("Error opening file. " + e);
         }
-
     }
 
 }
