@@ -4,11 +4,14 @@ import tokenizer.*;
 public class Interpreter {
     
     public static void main(String[] args) {
-        // Get file name from command line argument
-        String fileName = args[0];
+        // Get program file name from command line argument
+        String programFile = args[0];
+        
+        // Get input file name from command line argument
+        String inputFile = args[1];
         
         // Tokenize file
-        Tokenizer tokens = new Tokenizer(fileName);
+        Tokenizer tokens = new Tokenizer(programFile);
     }
     
 }

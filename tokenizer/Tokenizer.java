@@ -2,6 +2,7 @@ package tokenizer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
@@ -14,10 +15,10 @@ public class Tokenizer {
      * Private members --------------------------------------------------------
      */
     
-    private Queue<Integer> tokens;   // Stores tokens
-    private Set<String> identifiers; // Stores identifiers
-    private Set<String> declared;    // Keeps track of declarations
-    private boolean isDeclared;      // Indicates if declaration is complete
+    private Queue<Integer> tokens;          // Stores tokens
+    private static Set<String> identifiers; // Stores identifiers
+    private Set<String> declared;           // Keeps track of declarations
+    private boolean isDeclared;             // Indicates if declaration is complete
 
     /**
      * Determines the type of token and returns the type.
@@ -227,6 +228,9 @@ public class Tokenizer {
             System.out.println("Error: Invalid identifier token");
             System.exit(0);
         }
+        
+        // Store identifier
+        identifiers.add(token);
 
         return value;
     }
@@ -239,8 +243,10 @@ public class Tokenizer {
      * Constructor
      */
     public Tokenizer(String inFile){
-        // Queue to store tokens
         tokens = new LinkedList<Integer>();
+        identifiers = new HashSet<String>();
+        declared = new HashSet<String>();
+        isDeclared = false;
         
         try {
             // Open file & read stream
@@ -321,6 +327,17 @@ public class Tokenizer {
             System.exit(0);
         }
         tokens.remove();
+    }
+    
+    /**
+     * Returns true if there are no more tokens, false otherwise 
+     */
+    public boolean isEmpty(){
+        boolean empty = true;
+        if(tokens.size()==0){
+            empty = false;
+        }
+        return empty;
     }
 
 }
