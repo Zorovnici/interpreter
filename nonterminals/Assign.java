@@ -20,13 +20,6 @@ public class Assign {
         // Advance to next token
         tokens.nextToken();
         
-        // Verify that the next token is an integer, id, or '('
-        if (tokens.getToken() != 32 || tokens.getToken() != 32 || 
-                tokens.getToken() != 20){
-            System.out.println("Error: expected <exp>");
-            System.exit(0);      
-        }
-        
         // Parse <exp>
         exp = new Exp();
         exp.parseExp(tokens);
