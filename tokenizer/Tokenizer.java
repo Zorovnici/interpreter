@@ -284,7 +284,6 @@ public class Tokenizer {
                         break;
                     case "identifier":
                         tokens.add(getIdentifier(str));
-                        identifiers.add(getIdentifier(str));
                         System.out.println(getIdentifier(str).getId());
                         break;
                     case "integer":
