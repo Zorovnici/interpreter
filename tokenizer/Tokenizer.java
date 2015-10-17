@@ -16,9 +16,6 @@ public class Tokenizer {
      */
     
     private Queue<Token> tokens;            // Stores tokens
-    private static Set<Token> identifiers;  // Stores identifiers
-    private Set<String> declared;           // Keeps track of declarations
-    private boolean isDeclared;             // Indicates if declaration is complete
 
     /**
      * Determines the type of token and returns the type.
@@ -258,9 +255,6 @@ public class Tokenizer {
      */
     public Tokenizer(String inFile){
         tokens = new LinkedList<Token>();
-        identifiers = new HashSet<Token>();
-        declared = new HashSet<String>();
-        isDeclared = false;
         
         try {
             // Open file & read stream
@@ -385,13 +379,6 @@ public class Tokenizer {
             empty = false;
         }
         return empty;
-    }
-    
-    /**
-     * Returns true if identifier already exists, false otherwise 
-     */
-    public boolean idExist(String id){
-        return identifiers.contains(id);
     }
 
 }
