@@ -3,13 +3,13 @@ package nonterminals;
 import tokenizer.Tokenizer;
 
 public class Assign {
-    private ID id;
+    private Id id;
     private Exp exp;
     
     public void parseAssign(Tokenizer tokens){
         // Parse <id>
-        id = new ID();
-        id.parseID(tokens);
+        id = new Id();
+        id.parseId(tokens);
         
         // Verify that the next token is =
         if(tokens.getToken() != 14){
@@ -27,7 +27,7 @@ public class Assign {
     
     public void printAssign (){
         // Print <id>
-        id.printID();
+        id.printId();
         
         // Print '='
         System.out.print(" = ");

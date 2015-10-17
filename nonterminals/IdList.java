@@ -3,13 +3,13 @@ package nonterminals;
 import tokenizer.Tokenizer;
 
 public class IdList {
-    private ID id;
+    private Id id;
     private IdList idList;
 
     public void parseIdList(Tokenizer tokens){
         // Parse <id>
-        id = new ID();
-        id.parseID(tokens);
+        id = new Id();
+        id.parseId(tokens);
         
         // If next token is a comma then parse <id list>
         if (tokens.getToken() == 13){
@@ -24,7 +24,7 @@ public class IdList {
     
     public void printIdList(){
         // Print <id>
-        id.printID();
+        id.printId();
         
         // Print <id list>
         if(idList != null){

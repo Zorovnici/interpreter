@@ -9,7 +9,7 @@ public class DeclSeq {
     public void parseDeclSeq(Tokenizer tokens){
         // Parse <decl>
         decl = new Decl();
-        decl.parseDecl(tokens.getToken());
+        decl.parseDecl(tokens);
         
         // If the next token is int then this is a <decl seq>
         if (tokens.getToken() == 4){

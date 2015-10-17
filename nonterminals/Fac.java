@@ -24,7 +24,7 @@ public class Fac {
     
     public void printFac(){
         // Print <op>
-        op.printOP();
+        op.printOp();
         
         // Print * <fac>
         if (fac != null){

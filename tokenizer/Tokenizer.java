@@ -15,7 +15,7 @@ public class Tokenizer {
      * Private members --------------------------------------------------------
      */
     
-    private Queue<Integer> tokens;          // Stores tokens
+    private Queue<Token> tokens;            // Stores tokens
     private static Set<String> identifiers; // Stores identifiers
     private Set<String> declared;           // Keeps track of declarations
     private boolean isDeclared;             // Indicates if declaration is complete
@@ -52,129 +52,137 @@ public class Tokenizer {
      * Returns the corresponding integer for the reserved token.
      * If the token is not valid then returns an error.
      */
-    private static int getReserved(String token) {
+    private static Token getReserved(String str) {
         int value = 0;
-        if (token.equals("program")){
+        if (str.equals("program")){
             value = 1;
         }
-        else if (token.equals("begin")){
+        else if (str.equals("begin")){
             value = 2;
         }
-        else if (token.equals("end")){
+        else if (str.equals("end")){
             value = 3;
         }
-        else if (token.equals("int")){
+        else if (str.equals("int")){
             value = 4;
         }
-        else if (token.equals("if")){
+        else if (str.equals("if")){
             value = 5;
         }
-        else if (token.equals("then")){
+        else if (str.equals("then")){
             value = 6;
         }
-        else if (token.equals("else")){
+        else if (str.equals("else")){
             value = 7;
         }
-        else if (token.equals("while")){
+        else if (str.equals("while")){
             value = 8;
         }
-        else if (token.equals("loop")){
+        else if (str.equals("loop")){
             value = 9;
         }
-        else if (token.equals("read")){
+        else if (str.equals("read")){
             value = 10;
         }
-        else if (token.equals("write")){
+        else if (str.equals("write")){
             value = 11;
         }
         else {
             System.out.println("Error: Invalid reserved token");
             System.exit(0);
         }
-        return value;
+        
+        // Create and return token
+        Token token = new Token();
+        token.setId(value);
+        return token;
     }
 
     /**
      * Returns the corresponding integer for the symbol token.
      * If the token is not valid then returns an error.
      */
-    private static int getSymbol(String token) {
+    private static Token getSymbol(String str) {
         int value = 0;
-        if (token.equals(";")){
+        if (str.equals(";")){
             value = 12;
         }
-        else if (token.equals(",")){
+        else if (str.equals(",")){
             value = 13;
         }
-        else if (token.equals("=")){
+        else if (str.equals("=")){
             value = 14;
         }
-        else if (token.equals("!")){
+        else if (str.equals("!")){
             value = 15;
         }
-        else if (token.equals("[")){
+        else if (str.equals("[")){
             value = 16;
         }
-        else if (token.equals("]")){
+        else if (str.equals("]")){
             value = 17;
         }
-        else if (token.equals("&&")){
+        else if (str.equals("&&")){
             value = 18;
         }
-        else if (token.equals("||")){
+        else if (str.equals("||")){
             value = 19;
         }
-        else if (token.equals("(")){
+        else if (str.equals("(")){
             value = 20;
         }
-        else if (token.equals(")")){
+        else if (str.equals(")")){
             value = 21;
         }
-        else if (token.equals("+")){
+        else if (str.equals("+")){
             value = 22;
         }
-        else if (token.equals("-")){
+        else if (str.equals("-")){
             value = 23;
         }
-        else if (token.equals("*")){
+        else if (str.equals("*")){
             value = 24;
         }
-        else if (token.equals("!=")){
+        else if (str.equals("!=")){
             value = 25;
         }
-        else if (token.equals("==")){
+        else if (str.equals("==")){
             value = 26;
         }
-        else if (token.equals("<")){
+        else if (str.equals("<")){
             value = 27;
         }
-        else if (token.equals(">")){
+        else if (str.equals(">")){
             value = 28;
         }
-        else if (token.equals("<=")){
+        else if (str.equals("<=")){
             value = 29;
         }
-        else if (token.equals(">=")){
+        else if (str.equals(">=")){
             value = 30;
         }
         else {
             System.out.println("Error: Invalid special token");
             System.exit(0);
         }
-        return value;
+        
+        // Create and return token
+        Token token = new Token();
+        token.setId(value);
+        return token;
     }
 
     /**
      * Returns the corresponding integer for the integer token.
      * If the token is not valid then returns an error.
      */
-    private static int getInteger(String token) {
+    private static Token getInteger(String str) {
         int value = 31;
 
         // Check if token is a valid integer
         boolean num = true;
-        for (int i = 0; i < token.length(); i++){
-            if(!Character.isDigit(token.charAt(i))){
+        for (int i = 0; i < str.length(); i++){
+            if(!Character.isDigit(str.charAt(i))){
                 num = false;
             }
         }
@@ -182,22 +190,27 @@ public class Tokenizer {
             System.out.println("Error: Invalid integer token");
             System.exit(0);
         }
-        return value;
+        
+        // Create and return token
+        Token token = new Token();
+        token.setId(value);
+        token.setInteger(Integer.parseInt(str));
+        return token;
     }
 
     /**
      * Returns the corresponding integer for the identifier token.
      * If the token is not valid then returns an error.
      */
-    private static int getIdentifier(String token) {
+    private static Token getIdentifier(String str) {
         int value = 32;
 
         // Find out if the token contains an integer
         // If it does get the index of the first occurrence
         boolean containsInt = false;
         int intIndex;
-        for (intIndex = 0; intIndex < token.length(); intIndex++){
-            if(Character.isDigit(token.charAt(intIndex))){
+        for (intIndex = 0; intIndex < str.length(); intIndex++){
+            if(Character.isDigit(str.charAt(intIndex))){
                 containsInt = true;
                 break;
             }
@@ -207,7 +220,7 @@ public class Tokenizer {
         // are upper case
         boolean allCaps = true;
         for (int i = 0; i < intIndex; i++){
-            if(!Character.isUpperCase(token.charAt(i))){
+            if(!Character.isUpperCase(str.charAt(i))){
                 allCaps = false;
             }
         }
@@ -216,8 +229,8 @@ public class Tokenizer {
         // are also integers
         boolean allInts = true;
         if (containsInt){
-            for (int i = intIndex; i < token.length(); i++){
-                if(!Character.isDigit(token.charAt(i))){
+            for (int i = intIndex; i < str.length(); i++){
+                if(!Character.isDigit(str.charAt(i))){
                     allInts = false;
                 }
             }
@@ -230,9 +243,13 @@ public class Tokenizer {
         }
         
         // Store identifier
-        identifiers.add(token);
+        identifiers.add(str);
 
-        return value;
+        // Create and return token
+        Token token = new Token();
+        token.setId(value);
+        token.setIdentifier(str);
+        return token;
     }
     
     /*
@@ -243,7 +260,7 @@ public class Tokenizer {
      * Constructor
      */
     public Tokenizer(String inFile){
-        tokens = new LinkedList<Integer>();
+        tokens = new LinkedList<Token>();
         identifiers = new HashSet<String>();
         declared = new HashSet<String>();
         isDeclared = false;
@@ -263,28 +280,28 @@ public class Tokenizer {
 
                 while (matcher.find()) {
                     // Get token
-                    String token = matcher.group(0);
+                    String str = matcher.group(0);
 
                     // Get token type
-                    String type = tokenType(token);
+                    String type = tokenType(str);
 
                     // Validate and output token
                     switch (type) {
                     case "reserved":
-                        tokens.add(getReserved(token));
-                        System.out.println(getReserved(token));
+                        tokens.add(getReserved(str));
+                        System.out.println(getReserved(str).getId());
                         break;
                     case "identifier":
-                        tokens.add(getIdentifier(token));
-                        System.out.println(getIdentifier(token));
+                        tokens.add(getIdentifier(str));
+                        System.out.println(getIdentifier(str).getId());
                         break;
                     case "integer":
-                        tokens.add(getInteger(token));
-                        System.out.println(getInteger(token));
+                        tokens.add(getInteger(str));
+                        System.out.println(getInteger(str).getId());
                         break;
                     case "symbol":
-                        tokens.add(getSymbol(token));
-                        System.out.println(getSymbol(token));
+                        tokens.add(getSymbol(str));
+                        System.out.println(getSymbol(str).getId());
                         break;
                     default:
                         System.out.println("Invalid token type");
@@ -295,8 +312,10 @@ public class Tokenizer {
             }
             
             // Add end of file token
-            tokens.add(33);
-            System.out.println(33);
+            Token token = new Token();
+            token.setId(33);
+            tokens.add(token);
+            System.out.println(token.getId());
 
             // Close file & read stream
             file.close();
@@ -308,14 +327,44 @@ public class Tokenizer {
     }
     
     /**
-     * Returns the current token
+     * Returns the current token id
      */
     public int getToken(){
         if(tokens.size()==0){
             System.out.print("Error: there are no tokens");
             System.exit(0);
         }
-        return tokens.peek();
+        return tokens.peek().getId();
+    }
+    
+    /**
+     * Returns the current token integer value
+     */
+    public int getTokenInteger(){
+        if(tokens.size()==0){
+            System.out.print("Error: there are no tokens");
+            System.exit(0);
+        }
+        if (tokens.peek().getId() != 32){
+            System.out.print("Error: can't get integer - not an integer token");
+            System.exit(0);
+        }
+        return tokens.peek().getInteger();
+    }
+    
+    /**
+     * Returns the current token identifier value
+     */
+    public String getTokenIdentifier(){
+        if(tokens.size()==0){
+            System.out.print("Error: there are no tokens");
+            System.exit(0);
+        }
+        if (tokens.peek().getId() != 31){
+            System.out.print("Error: can't get identifier - not an identifier token");
+            System.exit(0);
+        }
+        return tokens.peek().getIdentifier();
     }
     
     /**

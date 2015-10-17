@@ -14,7 +14,7 @@ public class Cond {
             
             // Parse <comp>
             comp = new Comp();
-            comp.parseComp();
+            comp.parseComp(tokens);
             
             // Set condition type to comp
             type = "comp";
@@ -88,6 +88,7 @@ public class Cond {
                 
                 // Print <cond>              
                 cond1.printCond();
+                
                 break;
             case "and":  
                 // Print [
@@ -95,34 +96,34 @@ public class Cond {
                 
                 // Print <cond>              
                 cond1.printCond();
-                break;
                 
                 // Print &&
                 System.out.print(" && ");
                 
                 // Print <cond>              
                 cond2.printCond();
-                break;
                 
                 // Print [
                 System.out.println("]");
+                
+                break;
             case "or":  
                 // Print [
                 System.out.println("[");
                 
                 // Print <cond>              
                 cond1.printCond();
-                break;
                 
                 // Print &&
                 System.out.print(" || ");
                 
                 // Print <cond>              
                 cond2.printCond();
-                break;
                 
                 // Print [
                 System.out.println("]");
+                
+                break;
             default:
                 System.out.println("Error: invalid condition type");
                 break;
