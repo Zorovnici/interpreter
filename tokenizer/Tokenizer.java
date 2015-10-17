@@ -16,7 +16,7 @@ public class Tokenizer {
      */
     
     private Queue<Token> tokens;            // Stores tokens
-    private static Set<String> identifiers; // Stores identifiers
+    private static Set<Token> identifiers;  // Stores identifiers
     private Set<String> declared;           // Keeps track of declarations
     private boolean isDeclared;             // Indicates if declaration is complete
 
@@ -241,9 +241,6 @@ public class Tokenizer {
             System.out.println("Error: Invalid identifier token");
             System.exit(0);
         }
-        
-        // Store identifier
-        identifiers.add(str);
 
         // Create and return token
         Token token = new Token();
@@ -261,7 +258,7 @@ public class Tokenizer {
      */
     public Tokenizer(String inFile){
         tokens = new LinkedList<Token>();
-        identifiers = new HashSet<String>();
+        identifiers = new HashSet<Token>();
         declared = new HashSet<String>();
         isDeclared = false;
         
@@ -293,6 +290,7 @@ public class Tokenizer {
                         break;
                     case "identifier":
                         tokens.add(getIdentifier(str));
+                        identifiers.add(getIdentifier(str));
                         System.out.println(getIdentifier(str).getId());
                         break;
                     case "integer":
@@ -387,6 +385,13 @@ public class Tokenizer {
             empty = false;
         }
         return empty;
+    }
+    
+    /**
+     * Returns true if identifier already exists, false otherwise 
+     */
+    public boolean idExist(String id){
+        return identifiers.contains(id);
     }
 
 }

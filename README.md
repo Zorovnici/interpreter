@@ -10,7 +10,7 @@ An interpreter for a toy imperative language.
 <stmt seq> ::= <stmt> | <stmt> <stmt seq>
 <decl> ::= int <id list>;
 <id list> ::= <id> | <id>, <id list>
-<stmt> ::= <assign>|<if>|<loop>|<in>|<out>
+<stmt> ::= <assign>|<if>|<loop>|<input>|<output>
 <assign> ::= <id> = <exp>;
 <if> ::= if <cond> then <stmt seq> end; | if <cond> then <stmt seq> else <stmt seq> end;
 <loop> ::= while <cond> loop <stmt seq> end;
