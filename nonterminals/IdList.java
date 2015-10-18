@@ -7,9 +7,9 @@ public class IdList {
     private IdList idList;
 
     public void parseIdList(Tokenizer tokens){
-        // Parse <id>
-        id = new Id();
-        id.parseId(tokens);
+        // Parse <id> but do not create a new id object in case
+        // the identifier already exists
+        id = Id.parseId(tokens);
         
         // If next token is a comma then parse <id list>
         if (tokens.getToken() == 13){
