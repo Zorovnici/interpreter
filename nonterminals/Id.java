@@ -43,7 +43,7 @@ public class Id {
     }
     
     
-    public static Id parseId(Tokenizer tokens){       
+    public static Id parseId(Tokenizer tokens, boolean declaration){       
         Id id = null;
         // Iterate over the identifiers to see if the Id object already exists
         boolean exists = false;
@@ -51,6 +51,12 @@ public class Id {
             if (obj.getIdentifier().equals(tokens.getTokenIdentifier())){
                 // The id has been found
                 exists = true;
+                
+                // Check to see if this is a double declaration
+                if (declaration){
+                    System.out.println("Error: identifier has already been declared");
+                    System.exit(0);
+                }
                 
                 // Update existing object
                 id = obj;
@@ -67,7 +73,11 @@ public class Id {
             
             // Add Id to identifiers set to avoid duplicates
             identifiers.add(id);
-            
+  
+            // If this is a declaration update the declaration status
+            if (declaration){
+                id.setDeclared(true);
+            }
         }
         
         // Consume token

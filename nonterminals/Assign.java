@@ -1,6 +1,5 @@
 package nonterminals;
 
-
 import tokenizer.Tokenizer;
 
 public class Assign {
@@ -10,7 +9,13 @@ public class Assign {
     public void parseAssign(Tokenizer tokens){
         // Parse <id> but do not create a new id object in case
         // the identifier already exists
-        id = Id.parseId(tokens);
+        id = Id.parseId(tokens, false);
+        
+        // Check that the assigned identifier has been declared
+        if(!id.getDeclared()){
+            System.out.println("Error: identifier has not been declared");
+            System.exit(0);
+        }
 
         // Verify that the next token is =
         if(tokens.getToken() != 14){

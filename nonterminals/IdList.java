@@ -6,10 +6,10 @@ public class IdList {
     private Id id;
     private IdList idList;
 
-    public void parseIdList(Tokenizer tokens){
+    public void parseIdList(Tokenizer tokens, boolean declaration){
         // Parse <id> but do not create a new id object in case
         // the identifier already exists
-        id = Id.parseId(tokens);
+        id = Id.parseId(tokens, declaration);
         
         // If next token is a comma then parse <id list>
         if (tokens.getToken() == 13){
@@ -18,7 +18,7 @@ public class IdList {
             
             // Parse <id list>
             idList = new IdList();
-            idList.parseIdList(tokens);
+            idList.parseIdList(tokens, declaration);
         }
     }
     
