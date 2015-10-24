@@ -5,7 +5,7 @@ import tokenizer.Tokenizer;
 public class Exp {
     private Fac fac;
     private Exp exp;
-    private String type;
+    private String type = "";
     
     public void parseExp(Tokenizer tokens){
         // Parse <fac>

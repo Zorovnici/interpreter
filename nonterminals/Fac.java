@@ -3,13 +3,59 @@ package nonterminals;
 import tokenizer.Tokenizer;
 
 public class Fac {
-    private Op op;
     private Fac fac;
+    private Exp exp;
+    private String type;
+    private int value;
+    private String id;
     
     public void parseFac(Tokenizer tokens){
-        // Parse <op>
-        op = new Op();
-        op.parseOp(tokens);
+        
+        if (tokens.getToken() == 31){ // The token is an integer   
+            // Store integer value
+            value = tokens.getTokenInteger();
+            
+            // Set type to integer
+            type = "integer";
+            
+            // Consume token
+            tokens.nextToken();
+        }
+        else if (tokens.getToken() == 32){ // The token is an identifier 
+            // Store identifier
+            id = tokens.getTokenIdentifier();
+            
+            // Set type to id
+            type = "id";
+            
+            // Consume token
+            tokens.nextToken();
+        }
+        else if (tokens.getToken() == 20){ // The token is '('
+            // Advance to next token
+            tokens.nextToken();
+            
+            // Parse <exp>
+            exp = new Exp();
+            exp.parseExp(tokens);
+            
+            // Verify that next token is ')'
+            if (tokens.getToken() != 21){
+                System.out.println("Error: expected )");
+                System.exit(0);
+            }
+            
+            // Advance to next token
+            tokens.nextToken();
+            
+            // Set type to exp
+            type = "exp";
+        }
+        else {
+            System.out.println("Error: expected <int>, <id>, or (<exp>)");
+            System.exit(0);
+        }
+
         
         // If the next token is * then it is the second alternative
         if (tokens.getToken() == 24){
@@ -23,16 +69,20 @@ public class Fac {
     }
     
     public void printFac(){
-        // Print <op>
-        op.printOp();
-        
-        // Print * <fac>
-        if (fac != null){
-            // Print *
-            System.out.print(" * ");
-            
-            // Print <fac>
-            fac.printFac();
+        switch (type){
+            case "integer":
+                // Print <int>
+                System.out.print(value);
+                break;
+            case "id":
+                // Print <id>
+                System.out.print(id);
+                break;
+            case "exp":
+                // Print (<exp>)
+                System.out.println("(");
+                exp.printExp();
+                System.out.print(")");
         }
     }
     

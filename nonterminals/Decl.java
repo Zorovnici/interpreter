@@ -18,14 +18,31 @@ public class Decl {
         // Parse <id list>
         idList = new IdList();
         idList.parseIdList(tokens);
+        
+        // Verify that next token is ;
+        if(tokens.getToken() != 12){
+            System.out.println("Error: expected ';'");
+            System.exit(0);
+        }
+        
+        // Consume token
+        tokens.nextToken();
     }
     
-    public void printDecl(){
+    public void printDecl(int tab){
+        System.out.println("");
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
+        
         // Print int
-        System.out.println("int");
+        System.out.print("int ");
         
         // Print <id list>
         idList.printIdList();
+        
+        // Print ;
+        System.out.print(";");
     }
     
     public void execDecl(){

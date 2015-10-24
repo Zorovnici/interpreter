@@ -31,10 +31,10 @@ public class Prog {
         // Create and parse <stmt seq>
         stmtSeq = new StmtSeq();
         stmtSeq.parseStmtSeq(tokens);
-        
+
         // Verify that token is end
-        if (tokens.getToken() != 2){
-            System.out.println("Error: expected end");
+        if (tokens.getToken() != 3){
+            System.out.println("Error: expected end, token: " + tokens.getToken());
             System.exit(0);
         }
         
@@ -56,17 +56,19 @@ public class Prog {
     
     public void printProg(){
         // Print program
-        System.out.println("program");
+        System.out.print("program");
         
         // Print <decl seq>
-        declSeq.printDeclSeq();
+        declSeq.printDeclSeq(1);
         
         // Print begin
-        System.out.println("begin");
+        System.out.println();
+        System.out.print("   begin");
         
         // Print <stmt seq>
-        stmtSeq.printStmtSeq();
-        System.out.println("end");
+        stmtSeq.printStmtSeq(2);
+        System.out.println();
+        System.out.print("   end");
     }
     
     public void executeProg() {

@@ -31,9 +31,6 @@ public class IdList {
             System.out.print(", ");
             idList.printIdList();
         }
-        
-        // Print ;
-        System.out.print(";");
     }
     
     public void execIdList(){

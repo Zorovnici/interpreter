@@ -8,10 +8,7 @@ public class Cond {
     private String type;
     
     public void parseCond(Tokenizer tokens){
-        if (tokens.getToken() == 20){ // The token is (
-            // Advance to next token
-            tokens.nextToken();
-            
+        if (tokens.getToken() == 20){ // The token is (            
             // Parse <comp>
             comp = new Comp();
             comp.parseComp(tokens);
@@ -20,9 +17,6 @@ public class Cond {
             type = "comp";
         }
         else if (tokens.getToken() == 15){ // The next token is !   
-            // Advance to next token
-            tokens.nextToken();
-            
             // Parse <cond>
             cond1 = new Cond();
             cond1.parseCond(tokens);
@@ -31,9 +25,6 @@ public class Cond {
             type = "not";
         }
         else if (tokens.getToken() == 16){ // The next token is [
-            // Advance to next token
-            tokens.nextToken();
-            
             // Parse <cond>
             cond1 = new Cond();
             cond1.parseCond(tokens);
@@ -50,9 +41,6 @@ public class Cond {
                 type = "and";
             }          
             else if (tokens.getToken() == 16){ // The next token is ||
-                // Advance to next token
-                tokens.nextToken();
-                
                 // Parse <cond>
                 cond2 = new Cond();
                 cond2.parseCond(tokens);
@@ -84,7 +72,7 @@ public class Cond {
                 break;
             case "not":  
                 // Print !
-                System.out.println("!");
+                System.out.print("!");
                 
                 // Print <cond>              
                 cond1.printCond();
@@ -92,7 +80,7 @@ public class Cond {
                 break;
             case "and":  
                 // Print [
-                System.out.println("[");
+                System.out.print("[");
                 
                 // Print <cond>              
                 cond1.printCond();
@@ -104,12 +92,12 @@ public class Cond {
                 cond2.printCond();
                 
                 // Print [
-                System.out.println("]");
+                System.out.print("]");
                 
                 break;
             case "or":  
                 // Print [
-                System.out.println("[");
+                System.out.print("[");
                 
                 // Print <cond>              
                 cond1.printCond();
@@ -121,7 +109,7 @@ public class Cond {
                 cond2.printCond();
                 
                 // Print [
-                System.out.println("]");
+                System.out.print("]");
                 
                 break;
             default:

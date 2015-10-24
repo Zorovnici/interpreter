@@ -334,7 +334,7 @@ public class Tokenizer {
             System.out.print("Error: there are no tokens");
             System.exit(0);
         }
-        if (tokens.peek().getId() != 32){
+        if (tokens.peek().getId() != 31){
             System.out.print("Error: can't get integer - not an integer token");
             System.exit(0);
         }
@@ -349,7 +349,7 @@ public class Tokenizer {
             System.out.print("Error: there are no tokens");
             System.exit(0);
         }
-        if (tokens.peek().getId() != 31){
+        if (tokens.peek().getId() != 32){
             System.out.print("Error: can't get identifier - not an identifier token");
             System.exit(0);
         }

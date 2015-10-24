@@ -20,15 +20,23 @@ public class Output {
         idList.parseIdList(tokens);
         
         // Verify that next token is ';'
-        if (tokens.getToken() != 1){
+        if (tokens.getToken() != 12){
             System.out.println("Error: expected ;");
             System.exit(0);
         }
+        
+        // Consume token
+        tokens.nextToken();
+        
     }
 
-    public void printOutput(){
+    public void printOutput(int tab){
         // Print write
-        System.out.println("write ");
+        System.out.println("");
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
+        System.out.print("write ");
         
         // Print <id list>
         idList.printIdList();

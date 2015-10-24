@@ -20,7 +20,7 @@ public class Stmt {
             ifStmt = new If();
             ifStmt.parseIf(tokens);
         }
-        else if (tokens.getToken() == 9){
+        else if (tokens.getToken() == 8){
             // Parse <loop>
             loop = new Loop();
             loop.parseLoop(tokens);
@@ -37,26 +37,30 @@ public class Stmt {
         }
     }
     
-    public void printStmt(){
+    public void printStmt(int tab){
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
+        
         if (assign != null){
             // Print <assign>
-            assign.printAssign();
+            assign.printAssign(tab);
         }
         else if (ifStmt != null){
             // Print <if>
-            ifStmt.printIf();
+            ifStmt.printIf(tab);
         }
         else if (loop != null){
             // Print <loop>
-            loop.printLoop();
+            loop.printLoop(tab);
         }
         else if (input != null){
             // Print <input>
-            input.printInput();
+            input.printInput(tab);
         }
         else if (output != null){
             // Print <output>
-            output.printOutput();
+            output.printOutput(tab);
         }
     }
     

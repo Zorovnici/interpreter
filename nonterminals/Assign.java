@@ -1,5 +1,6 @@
 package nonterminals;
 
+
 import tokenizer.Tokenizer;
 
 public class Assign {
@@ -23,11 +24,24 @@ public class Assign {
         // Parse <exp>
         exp = new Exp();
         exp.parseExp(tokens);
+        
+        // Verify that next token is ;
+        if(tokens.getToken() != 12){
+            System.out.println("Error: expected ';'");
+            System.exit(0);
+        }
+        
+        // Consume token
+        tokens.nextToken();
     }
     
 
-    public void printAssign (){
+    public void printAssign (int tab){
         // Print <id>
+        System.out.println("");
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
         id.printId();
         
         // Print '='

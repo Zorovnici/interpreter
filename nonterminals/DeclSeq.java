@@ -19,13 +19,13 @@ public class DeclSeq {
         }
     }
     
-    public void printDeclSeq(){
+    public void printDeclSeq(int tab){
         // Print <decl>
-        decl.printDecl();
+        decl.printDecl(tab);
         
         // Print <decl seq>
         if(seq != null){
-            seq.printDeclSeq();
+            seq.printDeclSeq(tab);
         }
     }
     

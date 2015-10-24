@@ -12,6 +12,13 @@ public class Interpreter {
         
         // Tokenize file
         Tokenizer tokens = new Tokenizer(programFile);
+        
+        // Parse program
+        Prog program = new Prog();
+        program.parseProg(tokens);
+        
+        // Print program
+        program.printProg();
     }
     
 }

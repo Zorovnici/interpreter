@@ -38,21 +38,13 @@ public class If {
             // Advance to next token
             tokens.nextToken();
             
-            // Verify that the next token is an id, if, while, read, or write
-            if (tokens.getToken() != 32 || tokens.getToken() != 5 || 
-                    tokens.getToken() != 8 || tokens.getToken() != 10 || 
-                    tokens.getToken() != 11) {
-                System.out.println("Error: expected <stmt seq>");
-                System.exit(0);
-            }
-            
             // Parse <stmt seq>
             stmtSeq2 = new StmtSeq();
             stmtSeq2.parseStmtSeq(tokens);
         }
         
         // Verify that next token is end
-        if (tokens.getToken() == 3){
+        if (tokens.getToken() != 3){
             System.out.println("Error: expected end");
             System.exit(0);
         }
@@ -61,7 +53,7 @@ public class If {
         tokens.nextToken();
         
         // Verify that next token is ';'
-        if (tokens.getToken() == 12){
+        if (tokens.getToken() != 12){
             System.out.println("Error: expected ;");
             System.exit(0);
         }
@@ -70,30 +62,42 @@ public class If {
         tokens.nextToken();
     }
     
-    public void printIf(){
+    public void printIf(int tab){
         // Print if
-        System.out.println("if");
+        System.out.println("");
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
+        System.out.print("if ");
         
         // Print <cond>
         cond.printCond();
         
         // Print then
-        System.out.println("then");
+        System.out.print(" then");
         
         // Print <stmt seq>
-        stmtSeq1.printStmtSeq();
+        stmtSeq1.printStmtSeq(tab + 1);
         
         // Print second alternative
-        if (stmtSeq2 != null){
+        if (stmtSeq2 != null){           
             // Print else
-            System.out.println("else");
+            System.out.println("");
+            for(int i = 0; i < tab; i++){
+                System.out.print("   ");
+            }
+            System.out.print("else");
             
             // Print <stmt seq>
-            stmtSeq2.printStmtSeq();
+            stmtSeq2.printStmtSeq(tab + 1);
         }
         
         // Print end;
-        System.out.println("end;");
+        System.out.println("");
+        for(int i = 0; i < tab; i++){
+            System.out.print("   ");
+        }
+        System.out.print("end;");
     }
     
     public void execIf(){

@@ -12,21 +12,21 @@ public class StmtSeq {
         stmt.parseStmt(tokens);
         
         // If the next token is a <stmt> then parse <stmt seq>
-        if (tokens.getToken() != 32 || tokens.getToken() != 5 || 
-                tokens.getToken() != 8 || tokens.getToken() != 10 || 
-                tokens.getToken() != 11) {
+        if (tokens.getToken() == 32 || tokens.getToken() == 5 || 
+                tokens.getToken() == 8 || tokens.getToken() == 10 || 
+                tokens.getToken() == 11) {
             stmtSeq = new StmtSeq();
             stmtSeq.parseStmtSeq(tokens);
         }
     }
     
-    public void printStmtSeq(){
+    public void printStmtSeq(int tab){
         // Print <stmt>
-        stmt.printStmt();
+        stmt.printStmt(tab);
         
         // Print <stmt seq>
         if (stmtSeq != null){
-            stmtSeq.printStmtSeq();
+            stmtSeq.printStmtSeq(tab);
         }
     }
     

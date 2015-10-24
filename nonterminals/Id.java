@@ -38,6 +38,11 @@ public class Id {
         return declared;
     }
     
+    public Set<Id> getIdentifiers(){
+        return identifiers;
+    }
+    
+    
     public static Id parseId(Tokenizer tokens){       
         Id id = null;
         // Iterate over the identifiers to see if the Id object already exists
@@ -63,13 +68,19 @@ public class Id {
             // Add Id to identifiers set to avoid duplicates
             identifiers.add(id);
             
-            // Update declared
-            id.setDeclared(true);
         }
+        
+        // Consume token
+        tokens.nextToken();
+        
         return id;
     }
     
     public void printId(){
+        System.out.print(identifier);
+    }
+    
+    public void execId(){
         
     }
 }
