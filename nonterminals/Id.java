@@ -32,11 +32,11 @@ public class Id {
     }
     
     public void setInitialized(boolean b) {
-        this.declared = b;
+        this.initialized = b;
     }
     
     public boolean getInitialized() {
-        return declared;
+        return initialized;
     }
     
     public void setValue(int value) {
@@ -47,6 +47,12 @@ public class Id {
         int num = 0;
         for (Id obj : identifiers) {
             if (obj.getIdentifier().equals(id)){
+                // Return error if id is not initialized
+                if (!obj.getInitialized()){
+                    System.out.println("Error: id is not initialized");
+                    System.exit(0);
+                }
+                
                 // Get value
                 num = obj.value;
                 
@@ -61,7 +67,7 @@ public class Id {
         return identifiers;
     }
        
-    public static Id parseId(Tokenizer tokens, boolean declaration){       
+    public static Id parseId(Tokenizer tokens, boolean declaration, boolean assignment){       
         Id id = null;
         // Iterate over the identifiers to see if the Id object already exists
         boolean exists = false;
@@ -95,6 +101,11 @@ public class Id {
             // If this is a declaration update the declaration status
             if (declaration){
                 id.setDeclared(true);
+            }
+            
+            // If this is an assignment then update the initialized status
+            if (assignment){
+                id.setInitialized(true);
             }
         }
         

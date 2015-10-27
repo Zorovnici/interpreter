@@ -11,7 +11,7 @@ public class Assign {
     public void parseAssign(Tokenizer tokens){
         // Parse <id> but do not create a new id object in case
         // the identifier already exists
-        id = Id.parseId(tokens, false);
+        id = Id.parseId(tokens, false, true);
         
         // Check that the assigned identifier has been declared
         if(!id.getDeclared()){

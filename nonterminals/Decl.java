@@ -19,7 +19,7 @@ public class Decl {
             
         // Parse <id list>
         idList = new IdList();
-        idList.parseIdList(tokens, true);
+        idList.parseIdList(tokens, true, false);
         
         // Verify that next token is ;
         if(tokens.getToken() != 12){

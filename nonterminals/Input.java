@@ -19,7 +19,7 @@ public class Input {
         
         // Parse <id list>
         idList = new IdList();
-        idList.parseIdList(tokens, false);
+        idList.parseIdList(tokens, false, false);
         
         // Verify that next token is ';'
         if (tokens.getToken() != 12){
