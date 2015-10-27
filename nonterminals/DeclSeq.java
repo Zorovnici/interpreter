@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class DeclSeq {
@@ -29,7 +31,13 @@ public class DeclSeq {
         }
     }
     
-    public void execDeclSeq(){
+    public void execDeclSeq(Scanner inputFile){
+        // Execute <decl>
+        decl.execDecl(inputFile);
         
+        // Execute <decl seq>
+        if(seq != null){
+            seq.execDeclSeq(inputFile);
+        }
     }
 }

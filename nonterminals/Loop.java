@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Loop {
@@ -77,7 +79,9 @@ public class Loop {
         System.out.print("end;");
     }
     
-    public void execLoop(){
-        
+    public void execLoop(Scanner inputFile){
+        while(cond.execCond(inputFile)){
+            stmtSeq.execStmtSeq(inputFile);
+        }
     }
 }

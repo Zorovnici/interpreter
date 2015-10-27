@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Fac {
@@ -8,6 +10,7 @@ public class Fac {
     private String type;
     private int value;
     private String id;
+    private boolean alternative;
     
     public void parseFac(Tokenizer tokens){
         
@@ -65,6 +68,9 @@ public class Fac {
             // Parse <fac>
             fac = new Fac();
             fac.parseFac(tokens);
+            
+            // Set alternative to true
+            alternative = true;
         }
     }
     
@@ -86,7 +92,25 @@ public class Fac {
         }
     }
     
-    public void execFac(){
-        
+    public int execFac(Scanner inputFile){
+        int result = 0;
+        switch (type){
+        case "integer":
+            // Get value of integer
+            result = value;
+            break;
+        case "id":
+            // Get value of id
+            result = Id.getValue(id);
+            break;
+        case "exp":
+            // Get value of <exp>
+            value = exp.execExp(inputFile);
+    }
+        // If we have the second alternative then <op> * <fac>
+        if (alternative){
+            result = result * fac.execFac(inputFile);
+        }
+        return result;
     }
 }

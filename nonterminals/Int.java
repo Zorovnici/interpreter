@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Int {
@@ -20,7 +22,7 @@ public class Int {
         System.out.print(value);
     }
     
-    public void execInt(){
-        
+    public int execInt(Scanner inputfile){
+        return value;
     }
 }

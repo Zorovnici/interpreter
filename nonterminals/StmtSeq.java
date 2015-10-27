@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class StmtSeq {
@@ -30,7 +32,10 @@ public class StmtSeq {
         }
     }
     
-    public void execStmtSeq(){
-        
+    public void execStmtSeq(Scanner inputFile){
+        stmt.execStmt(inputFile);
+        if (stmtSeq != null){
+            stmtSeq.execStmtSeq(inputFile);
+        }
     }
 }

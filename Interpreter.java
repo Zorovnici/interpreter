@@ -1,3 +1,6 @@
+import java.io.FileReader;
+import java.util.Scanner;
+
 import nonterminals.*;
 import tokenizer.*;
 
@@ -19,6 +22,18 @@ public class Interpreter {
         
         // Print program
         program.printProg();
+        
+        // Open input file
+        Scanner in = null;
+        try{
+            in = new Scanner(new FileReader(inputFile));
+        }catch(Exception e){
+            System.out.print("Error: input file could not be opened");
+            System.exit(0);
+        }
+        
+        // Execute program
+        program.executeProg(in);
     }
     
 }

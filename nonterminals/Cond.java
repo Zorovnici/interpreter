@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Cond {
@@ -118,7 +120,25 @@ public class Cond {
         }
     }
     
-    public static void execCond(){
-        
+    public boolean execCond(Scanner inputFile){
+        boolean result = false;
+        switch(type){
+        case "comp":  
+            result = comp.execComp(inputFile);
+            break;
+        case "not":  
+            result = !cond1.execCond(inputFile);
+            break;
+        case "and":  
+            result = cond1.execCond(inputFile) && cond2.execCond(inputFile);
+            break;
+        case "or":  
+            result = cond1.execCond(inputFile) || cond2.execCond(inputFile);
+            break;
+        default:
+            System.out.println("Error: invalid condition type");
+            break;
+        }
+        return result;       
     }
 }

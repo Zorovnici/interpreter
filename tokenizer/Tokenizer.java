@@ -278,19 +278,15 @@ public class Tokenizer {
                     switch (type) {
                     case "reserved":
                         tokens.add(getReserved(str));
-                        System.out.println(getReserved(str).getId());
                         break;
                     case "identifier":
                         tokens.add(getIdentifier(str));
-                        System.out.println(getIdentifier(str).getId());
                         break;
                     case "integer":
                         tokens.add(getInteger(str));
-                        System.out.println(getInteger(str).getId());
                         break;
                     case "symbol":
                         tokens.add(getSymbol(str));
-                        System.out.println(getSymbol(str).getId());
                         break;
                     default:
                         System.out.println("Invalid token type");
@@ -304,7 +300,6 @@ public class Tokenizer {
             Token token = new Token();
             token.setId(33);
             tokens.add(token);
-            System.out.println(token.getId());
 
             // Close file & read stream
             file.close();

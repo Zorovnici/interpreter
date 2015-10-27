@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Exp {
@@ -59,7 +61,17 @@ public class Exp {
         }
     }
     
-    public void execExp(){
-        
+    public int execExp(Scanner inputFile){
+        int value = 0;
+        if (!type.equals("plus") && !type.equals("minus")){
+            value = fac.execFac(inputFile);
+        }
+        else if (type.equals("plus")){
+            value = fac.execFac(inputFile) + exp.execExp(inputFile);
+        }
+        else if (type.equals("minus")){
+            value = fac.execFac(inputFile) - exp.execExp(inputFile);
+        }
+        return value;
     }
 }

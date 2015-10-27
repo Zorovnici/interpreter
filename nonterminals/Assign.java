@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Assign {
@@ -41,7 +43,7 @@ public class Assign {
     }
     
 
-    public void printAssign (int tab){
+    public void printAssign(int tab){
         // Print <id>
         System.out.println("");
         for(int i = 0; i < tab; i++){
@@ -57,5 +59,13 @@ public class Assign {
         
         // Print ;
         System.out.print(";");
+    }
+    
+    public void execAssign(Scanner inputFile){
+        // Get value of expression
+        int value = exp.execExp(inputFile);
+        
+        // Assign value to id
+        id.setValue(value);
     }
 }

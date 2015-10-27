@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class If {
@@ -100,7 +102,12 @@ public class If {
         System.out.print("end;");
     }
     
-    public void execIf(){
-        
+    public void execIf(Scanner inputFile){
+        if (cond.execCond(inputFile)){
+            stmtSeq1.execStmtSeq(inputFile);
+        }
+        else if (stmtSeq2 != null){
+            stmtSeq2.execStmtSeq(inputFile);
+        }
     }
 }

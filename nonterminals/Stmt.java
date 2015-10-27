@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Stmt {
@@ -64,7 +66,21 @@ public class Stmt {
         }
     }
     
-    public void execStmt(){
-        
+    public void execStmt(Scanner inputFile){
+        if (assign != null){
+            assign.execAssign(inputFile);
+        }
+        else if (ifStmt != null){
+            ifStmt.execIf(inputFile);
+        }
+        else if (loop != null){
+            loop.execLoop(inputFile);
+        }
+        else if (input != null){
+            input.execInput(inputFile);
+        }
+        else if (output != null){
+            output.execOutput(inputFile);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Decl {
@@ -45,7 +47,7 @@ public class Decl {
         System.out.print(";");
     }
     
-    public void execDecl(){
+    public void execDecl(Scanner in){
         
     }
 }

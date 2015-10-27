@@ -1,4 +1,6 @@
 package nonterminals;
+import java.util.Scanner;
+
 import tokenizer.*;
 
 public class Prog {
@@ -71,7 +73,11 @@ public class Prog {
         System.out.print("   end");
     }
     
-    public void executeProg() {
+    public void executeProg(Scanner inputFile) {
+        // Execute <decl seq>
+        declSeq.execDeclSeq(inputFile);
         
+        // Execute <stmt seq>
+        stmtSeq.execStmtSeq(inputFile);
     }
 }

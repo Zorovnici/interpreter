@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Comp {
@@ -184,7 +186,66 @@ public class Comp {
         System.out.print(")");
     }
     
-    public void execComp(){
+    public boolean execComp(Scanner inputFile){
+        boolean result = false;
         
+        // Get first <op> value
+        if (type1.equals("id")){
+            // Get value of id
+            value1 = Id.getValue(id1);
+        }
+        else if (type1.equals("exp")){
+            // Get value of expression
+            value1 = exp.execExp(inputFile);
+        }
+        
+        // Get second <op> value
+        if (type2.equals("id")){
+            // Get value of id
+            value2 = Id.getValue(id2);
+        }
+        else if (type2.equals("exp")){
+            // Get value of <exp>
+            value2 = exp.execExp(inputFile);
+        }
+        
+        // Execute comparison
+        switch(compare){
+        case "!=":
+            if (value1 != value2){
+                result = true;
+            }
+            break;
+        case "==":
+            if (value1 == value2){
+                result = true;
+            }
+            break;
+        case "<":
+            if (value1 < value2){
+                result = true;
+            }
+            break;
+        case ">":
+            if (value1 > value2){
+                result = true;
+            }
+            break;
+        case "<=":
+            if (value1 <= value2){
+                result = true;
+            }
+            break;
+        case ">=":
+            if (value1 >= value2){
+                result = true;
+            }
+            break;
+        default:
+            System.out.println("Error: invalid comparison type");
+            break;
+        }
+        
+        return result;
     }
 }

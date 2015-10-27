@@ -1,5 +1,7 @@
 package nonterminals;
 
+import java.util.Scanner;
+
 import tokenizer.Tokenizer;
 
 public class Input {
@@ -44,7 +46,7 @@ public class Input {
         System.out.print(";");
     }
     
-    public void execInput(){
-        
+    public void execInput(Scanner inputFile){
+        idList.execIdListInput(inputFile);
     }
 }

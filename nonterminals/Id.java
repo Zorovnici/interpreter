@@ -1,13 +1,14 @@
 package nonterminals;
 
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 import tokenizer.Tokenizer;
 
 public class Id {
     private String identifier;                              // Identifier name 
-    private int val;                                        // Identifier value
+    private int value;                                      // Identifier value
     private boolean declared, initialized;                  // Indicates if declared or initialized
     private static Set<Id> identifiers = new HashSet<Id>(); // Stores identifiers
     
@@ -38,11 +39,28 @@ public class Id {
         return declared;
     }
     
+    public void setValue(int value) {
+        this.value = value;
+    }
+    
+    public static int getValue(String id){
+        int num = 0;
+        for (Id obj : identifiers) {
+            if (obj.getIdentifier().equals(id)){
+                // Get value
+                num = obj.value;
+                
+                // Exit loop
+                break;
+            }
+        }
+        return num;
+    }
+    
     public Set<Id> getIdentifiers(){
         return identifiers;
     }
-    
-    
+       
     public static Id parseId(Tokenizer tokens, boolean declaration){       
         Id id = null;
         // Iterate over the identifiers to see if the Id object already exists
@@ -90,7 +108,7 @@ public class Id {
         System.out.print(identifier);
     }
     
-    public void execId(){
-        
+    public void execId(Scanner inputFile){
+         
     }
 }
