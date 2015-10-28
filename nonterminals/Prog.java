@@ -70,7 +70,8 @@ public class Prog {
         // Print <stmt seq>
         stmtSeq.printStmtSeq(2);
         System.out.println();
-        System.out.print("   end");
+        System.out.println("   end");
+        System.out.println();
     }
     
     public void executeProg(Scanner inputFile) {

@@ -1,7 +1,6 @@
 package nonterminals;
 
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 import tokenizer.Tokenizer;
@@ -48,8 +47,8 @@ public class Id {
         for (Id obj : identifiers) {
             if (obj.getIdentifier().equals(id)){
                 // Return error if id is not initialized
-                if (!obj.getInitialized()){
-                    System.out.println("Error: id is not initialized");
+                if (!obj.initialized){
+                    System.out.println("Error: " + obj.identifier + " is not initialized");
                     System.exit(0);
                 }
                 
@@ -78,8 +77,13 @@ public class Id {
                 
                 // Check to see if this is a double declaration
                 if (declaration){
-                    System.out.println("Error: identifier has already been declared");
+                    System.out.println("Error: " + obj.identifier + " has already been declared");
                     System.exit(0);
+                }
+                
+                // If this is an assignment then update the initialized status
+                if (assignment){
+                    obj.setInitialized(true);
                 }
                 
                 // Update existing object
@@ -119,7 +123,4 @@ public class Id {
         System.out.print(identifier);
     }
     
-    public void execId(Scanner inputFile){
-         
-    }
 }

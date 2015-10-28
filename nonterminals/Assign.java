@@ -15,7 +15,7 @@ public class Assign {
         
         // Check that the assigned identifier has been declared
         if(!id.getDeclared()){
-            System.out.println("Error: identifier has not been declared");
+            System.out.println("Error: " + id.getIdentifier() + " has not been declared");
             System.exit(0);
         }
 

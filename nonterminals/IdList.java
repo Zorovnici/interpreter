@@ -1,7 +1,5 @@
 package nonterminals;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 import tokenizer.Tokenizer;
@@ -46,19 +44,16 @@ public class IdList {
         // Assign value to id
         id.setValue(inputFile.nextInt());
         
+        // Initialize id
+        id.setInitialized(true);
+        
         if(idList != null){
             idList.execIdListInput(inputFile);
         }
     }
     
     public void execIdListOutput(Scanner inputFile){
-        try {
-            PrintWriter writer = new PrintWriter("output");
-            //writer.print(Id.getValue(id.getIdentifier()));
-            System.out.println();
-            System.out.println("Output: " + Id.getValue(id.getIdentifier()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        System.out.print(id.getIdentifier() + " = ");
+        System.out.println(Id.getValue(id.getIdentifier()));
     }
 }

@@ -1,8 +1,8 @@
-program int X , Y , XY ;
+program int X , Y , XY, W;
 
-          begin read X ; Y  = 0 ;
+          begin read X ; Y  = 0 ; V = 1;
 
-               while ( X > 0 ) loop
+               while ( W > 0 ) loop
 
                                  read XY ; write XY ;
 
