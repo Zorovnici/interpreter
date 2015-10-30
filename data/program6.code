@@ -1,0 +1,11 @@
+program int X, Y;
+
+          begin X=1;
+          
+          	   read Y;
+
+               if ((X - Y) == 2) then
+               		write X;
+               end;
+
+          end

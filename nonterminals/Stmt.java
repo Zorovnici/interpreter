@@ -37,6 +37,10 @@ public class Stmt {
             output = new Output();
             output.parseOutput(tokens);
         }
+        else {
+            System.out.println("Error: expected <stmt>");
+            System.exit(0);
+        }
     }
     
     public void printStmt(int tab){
