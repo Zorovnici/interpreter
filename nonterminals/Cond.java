@@ -18,7 +18,10 @@ public class Cond {
             // Set condition type to comp
             type = "comp";
         }
-        else if (tokens.getToken() == 15){ // The next token is !   
+        else if (tokens.getToken() == 15){ // The next token is !
+            // Consume token
+            tokens.nextToken();
+            
             // Parse <cond>
             cond1 = new Cond();
             cond1.parseCond(tokens);
@@ -27,11 +30,14 @@ public class Cond {
             type = "not";
         }
         else if (tokens.getToken() == 16){ // The next token is [
+            // Consume token
+            tokens.nextToken();
+            
             // Parse <cond>
             cond1 = new Cond();
             cond1.parseCond(tokens);
             
-            if (tokens.getToken() == 16){ // The next token is &&
+            if (tokens.getToken() == 18){ // The next token is &&
                 // Advance to next token
                 tokens.nextToken();
                 
@@ -42,7 +48,10 @@ public class Cond {
                 // Set condition type to and
                 type = "and";
             }          
-            else if (tokens.getToken() == 16){ // The next token is ||
+            else if (tokens.getToken() == 19){ // The next token is ||
+                // Consume token
+                tokens.nextToken();
+                
                 // Parse <cond>
                 cond2 = new Cond();
                 cond2.parseCond(tokens);
@@ -53,7 +62,7 @@ public class Cond {
             
             // Verify that next token is ']'
             if (tokens.getToken() != 17){
-                System.out.println("Error: expected ]");
+                System.out.println("Error: expected ], token: " + tokens.getToken());
                 System.exit(0);
             }
             

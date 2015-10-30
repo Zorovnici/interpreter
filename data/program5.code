@@ -50,6 +50,34 @@ program int X , Y , Z ,C;
                		write Y;
           	   end;
           	   
+          	   if [(X == 0) && (Y == 1)] then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
           	   
+          	   if ![(X == 0) && (Y == 1)] then
+          	   		write X;
+               else
+               		write Y;
+          	   end;
+          	   
+          	   if [(X == 0) || (Y == 1)] then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if [(X == 0) || (Y == 18)] then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if [(X == 18) || (Y == 18)] then
+          	   		write X;
+               else
+               		write Y;
+          	   end;
 
 end
