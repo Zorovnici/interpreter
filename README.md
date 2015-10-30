@@ -46,7 +46,7 @@ Interpreter.java: Tokenizes program, parses it, prints it, and then executes it.
 <loop> ::= while <cond> loop <stmt seq> end;
 <input> ::= read <id list>;
 <output> ::= write <id list>;
-<cond> ::= <comp> | !<cond> | [<cond> && <cond>] | [<cond> or <cond>]
+<cond> ::= <comp> | !<cond> | [<cond> && <cond>] | [<cond> || <cond>]
 <comp> ::= (<op> <comp op> <op>)
 <exp> ::= <fac> | <fac>+<exp> | <fac>-<exp>
 <fac> ::= <op> | <op> * <fac>
