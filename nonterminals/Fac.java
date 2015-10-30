@@ -86,7 +86,7 @@ public class Fac {
                 break;
             case "exp":
                 // Print (<exp>)
-                System.out.println("(");
+                System.out.print("(");
                 exp.printExp();
                 System.out.print(")");
         }
@@ -105,7 +105,7 @@ public class Fac {
             break;
         case "exp":
             // Get value of <exp>
-            value = exp.execExp(inputFile);
+            result = exp.execExp(inputFile);
     }
         // If we have the second alternative then <op> * <fac>
         if (alternative){

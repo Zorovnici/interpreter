@@ -35,7 +35,7 @@ public class Exp {
             
             // Set type to minus
             type = "minus";
-        }   
+        }
     }
     
     public void printExp(){

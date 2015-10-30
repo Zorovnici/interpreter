@@ -1,11 +1,11 @@
-program int X, Y;
+program int X, Y, Z;
 
           begin X=1;
           
           	   read Y;
+          	   write Y;
 
-               if ((X - Y) == 2) then
-               		write X;
-               end;
+               Z = (X - Y);
+               write Z;
 
           end
