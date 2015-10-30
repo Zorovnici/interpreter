@@ -1,6 +1,26 @@
 # Interpreter
 
-An interpreter for a toy imperative language.
+An interpreter for a toy imperative language. The interpreter accepts a program and input
+file as arguments. The program file consists of a program using grammar from the language below
+and the input file is a list of inputs that are read in by the read command. The interpreter 
+parses, prints, and executes the program.
+
+## To compile (linux)
+
+Type the following command to compile:
+```
+javac */*.java *.java
+```
+
+## To run (linux)
+
+Type the following command to run:
+```
+java Interpreter <program-file> <input-file>
+```
+
+Where <program-file> is the address of the program file and <input-file> is the address of
+the input file
 
 ## The language
 
