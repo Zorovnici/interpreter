@@ -79,5 +79,10 @@ program int X , Y , Z ,C;
                else
                		write Y;
           	   end;
+          	   
+          	   while (C == 3) loop
+          	   		write X;
+          	   		C = 1;
+          	   end;
 
 end
