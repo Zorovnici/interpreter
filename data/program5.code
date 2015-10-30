@@ -1,0 +1,55 @@
+program int X , Y , Z ,C;
+
+          begin X = 0; Y = 1; Z = 1;C=3 ;
+
+               if (X > Y) then
+               		write X;
+               else
+               		write Y;
+          	   end;
+          	   
+          	   if (X < Y) then
+               		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if (Z <= Y) then
+               		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if (Z >= Y) then
+               		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if ((Y * Z) == 1) then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if ((C - Y) == 2) then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if ((C + Y) == 4) then
+          	   		write Y;
+               else
+               		write X;
+          	   end;
+          	   
+          	   if !(X == 0) then
+          	   		write X;
+               else
+               		write Y;
+          	   end;
+          	   
+          	   
+
+end
