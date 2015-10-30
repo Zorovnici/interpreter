@@ -19,8 +19,8 @@ Type the following command to run:
 java Interpreter <program-file> <input-file>
 ```
 
-Where <program-file> is the address of the program file and <input-file> is the address of
-the input file
+Where program-file is the address of the program file and input-file is the address of
+the input file.
 
 ## The language
 
