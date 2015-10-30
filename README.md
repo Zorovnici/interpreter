@@ -71,6 +71,16 @@ and it is not two tokens because of lack of whitespace.
 Tokens are numbered 1 through 11 for the reserved words, 12 through 30 for the special symbols, 31 for integer, and 32 for identifier. EOF token
 (for end-of-file) is token number 33.
 
+## Error handling
+
+The interpreter handles the following errors:
+
+Violations of the BNF grammar
+Double declarations
+Missing declarations
+Uninitialized variables
+Empty input file
+
 ## Libraries used
 
 For reading the core program source file:
