@@ -75,11 +75,7 @@ Tokens are numbered 1 through 11 for the reserved words, 12 through 30 for the s
 
 The interpreter handles the following errors:
 
-Violations of the BNF grammar
-Double declarations
-Missing declarations
-Uninitialized variables
-Empty input file
+Violations of the BNF grammar, double declarations, missing declarations, uninitialized variables, and an empty input file.
 
 ## Libraries used
 
