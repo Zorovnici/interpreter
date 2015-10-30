@@ -1,9 +1,8 @@
 # Interpreter
 
-An interpreter for a toy imperative language. The interpreter accepts a program and input
-file as arguments. The program file consists of a program using grammar from the language below
-and the input file is a list of inputs that are read in by the read command. The interpreter 
-parses, prints, and executes the program.
+The interpreter accepts a program file and input file as arguments. The program file consists of a program 
+made up of grammar from the BNF language described below. The input file is a list of integer values that are 
+assigned during execution of the read command. The interpreter parses, prints, and executes the program.
 
 ## To compile (linux)
 
@@ -85,7 +84,7 @@ Tokens are numbered 1 through 11 for the reserved words, 12 through 30 for the s
 
 The interpreter handles the following errors:
 
-Violations of the BNF grammar, double declarations, missing declarations, uninitialized variables, and an empty input file.
+Violations of the BNF grammar, double declarations, missing declarations, uninitialized variables, and a nonexistent program/input file.
 
 ## Libraries used
 
