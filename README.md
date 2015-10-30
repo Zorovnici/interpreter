@@ -22,6 +22,16 @@ java Interpreter <program-file> <input-file>
 Where program-file is the address of the program file and input-file is the address of
 the input file.
 
+## The files
+
+Interpreter.java: Tokenizes program, parses it, prints it, and then executes it.
+
+/data: Contains program and input files for testing.
+
+/nonterminals: Each nonterminal contains a parse, print, and execute method.
+
+/tokenizer: Token.java is a class to store token information. Tokenizer.java is responsible for tokenizing. 
+
 ## The language
 
 ```
